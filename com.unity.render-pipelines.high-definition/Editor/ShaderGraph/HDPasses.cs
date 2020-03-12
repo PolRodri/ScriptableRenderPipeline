@@ -448,7 +448,7 @@ namespace UnityEditor.Rendering.HighDefinition.ShaderGraph
                 fieldDependencies = HDFieldDependencies.Default,
                 renderStates = HDRenderStates.HDDepthForwardOnly,
                 pragmas = HDPragmas.DotsInstancedInV2Only,
-                keywords = HDKeywords.HDDepthMotionVectors,
+                keywords = HDKeywords.HDDepthForwardOnly,
                 includes = HDIncludes.UnlitDepthOnly,
 
                 // Custom Template
@@ -473,7 +473,7 @@ namespace UnityEditor.Rendering.HighDefinition.ShaderGraph
                 fieldDependencies = HDFieldDependencies.Default,
                 renderStates = HDRenderStates.HDUnlitMotionVectors,
                 pragmas = HDPragmas.DotsInstancedInV2Only,
-                keywords = HDKeywords.HDDepthMotionVectors,
+                keywords = HDKeywords.HDMotionVectors,
                 includes = HDIncludes.UnlitMotionVectors,
 
                 // Custom Template
@@ -655,7 +655,7 @@ namespace UnityEditor.Rendering.HighDefinition.ShaderGraph
                 renderStates = HDRenderStates.HDDepthOnly,
                 pragmas = HDPragmas.DotsInstancedInV1AndV2,
                 defines = HDDefines.ShaderGraphRaytracingHigh,
-                keywords = HDKeywords.HDLitDepthMotionVectors,
+                keywords = HDKeywords.HDLitDepthOnly,
                 includes = HDIncludes.LitDepthOnly,
 
                 // Custom Template
@@ -681,7 +681,7 @@ namespace UnityEditor.Rendering.HighDefinition.ShaderGraph
                 renderStates = HDRenderStates.HDMotionVectors,
                 pragmas = HDPragmas.DotsInstancedInV1AndV2,
                 defines = HDDefines.ShaderGraphRaytracingHigh,
-                keywords = HDKeywords.HDLitDepthMotionVectors,
+                keywords = HDKeywords.HDLitMotionVectors,
                 includes = HDIncludes.LitMotionVectors,
 
                 // Custom Template
@@ -912,7 +912,7 @@ namespace UnityEditor.Rendering.HighDefinition.ShaderGraph
                 renderStates = HDRenderStates.HDDepthOnly,
                 pragmas = HDPragmas.InstancedRenderingLayer,
                 defines = HDDefines.DepthMotionVectors,
-                keywords = HDKeywords.HDDepthMotionVectorsNoNormal,
+                keywords = HDKeywords.HDDepthNoNormal,
                 includes = HDIncludes.EyeDepthOnly,
 
                 // Custom Template
@@ -938,7 +938,7 @@ namespace UnityEditor.Rendering.HighDefinition.ShaderGraph
                 renderStates = HDRenderStates.HDMotionVectors,
                 pragmas = HDPragmas.InstancedRenderingLayer,
                 defines = HDDefines.DepthMotionVectors,
-                keywords = HDKeywords.HDDepthMotionVectorsNoNormal,
+                keywords = HDKeywords.HDMotionVectorsNoNormal,
                 includes = HDIncludes.EyeMotionVectors,
 
                 // Custom Template
@@ -1068,7 +1068,7 @@ namespace UnityEditor.Rendering.HighDefinition.ShaderGraph
                 renderStates = HDRenderStates.HDDepthOnly,
                 pragmas = HDPragmas.InstancedRenderingLayer,
                 defines = HDDefines.DepthMotionVectors,
-                keywords = HDKeywords.HDDepthMotionVectorsNoNormal,
+                keywords = HDKeywords.HDDepthNoNormal,
                 includes = HDIncludes.FabricDepthOnly,
 
                 // Custom Template
@@ -1094,7 +1094,7 @@ namespace UnityEditor.Rendering.HighDefinition.ShaderGraph
                 renderStates = HDRenderStates.HDMotionVectors,
                 pragmas = HDPragmas.InstancedRenderingLayer,
                 defines = HDDefines.DepthMotionVectors,
-                keywords = HDKeywords.HDDepthMotionVectorsNoNormal,
+                keywords = HDKeywords.HDMotionVectorsNoNormal,
                 includes = HDIncludes.FabricMotionVectors,
 
                 // Custom Template
@@ -1221,10 +1221,10 @@ namespace UnityEditor.Rendering.HighDefinition.ShaderGraph
                 structs = HDStructCollections.Default,
                 requiredFields = HDRequiredFields.LitFull,
                 fieldDependencies = HDFieldDependencies.Default,
-                renderStates = HDRenderStates.HairDepthOnly,
+                renderStates = HDRenderStates.HDDepthOnly,
                 pragmas = HDPragmas.InstancedRenderingLayer,
                 defines = HDDefines.DepthMotionVectors,
-                keywords = HDKeywords.HDDepthMotionVectorsNoNormal,
+                keywords = HDKeywords.HDDepthNoNormal,
                 includes = HDIncludes.HairDepthOnly,
 
                 // Custom Template
@@ -1250,7 +1250,7 @@ namespace UnityEditor.Rendering.HighDefinition.ShaderGraph
                 renderStates = HDRenderStates.HairMotionVectors,
                 pragmas = HDPragmas.InstancedRenderingLayer,
                 defines = HDDefines.DepthMotionVectors,
-                keywords = HDKeywords.HDDepthMotionVectorsNoNormal,
+                keywords = HDKeywords.HDMotionVectorsNoNormal,
                 includes = HDIncludes.HairMotionVectors,
 
                 // Custom Template
@@ -1463,7 +1463,7 @@ namespace UnityEditor.Rendering.HighDefinition.ShaderGraph
                 renderStates = HDRenderStates.HDDepthOnly,
                 pragmas = HDPragmas.DotsInstancedInV2OnlyRenderingLayer,
                 defines = HDDefines.DepthMotionVectors,
-                keywords = HDKeywords.HDDepthMotionVectorsNoNormal,
+                keywords = HDKeywords.HDDepthNoNormal,
                 includes = HDIncludes.StackLitDepthOnly,
 
                 // Custom Template
@@ -1489,7 +1489,7 @@ namespace UnityEditor.Rendering.HighDefinition.ShaderGraph
                 renderStates = HDRenderStates.HDMotionVectors,
                 pragmas = HDPragmas.DotsInstancedInV2OnlyRenderingLayer,
                 defines = HDDefines.DepthMotionVectors,
-                keywords = HDKeywords.HDDepthMotionVectorsNoNormal,
+                keywords = HDKeywords.HDMotionVectorsNoNormal,
                 includes = HDIncludes.StackLitMotionVectors,
 
                 // Custom Template

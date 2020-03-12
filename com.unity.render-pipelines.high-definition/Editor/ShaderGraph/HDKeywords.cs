@@ -264,6 +264,15 @@ namespace UnityEditor.Rendering.HighDefinition.ShaderGraph
                 definition = KeywordDefinition.ShaderFeature,
                 scope = KeywordScope.Local
             };
+
+            public static KeywordDescriptor AlphaToMask = new KeywordDescriptor()
+            {
+                displayName = "Alpha To Mask",
+                referenceName = "_ALPHATOMASK_ON",
+                type = KeywordType.Boolean,
+                definition = KeywordDefinition.ShaderFeature,
+                scope = KeywordScope.Local
+            };
         }
         public static KeywordCollection HDBase = new KeywordCollection
         {
@@ -342,7 +351,14 @@ namespace UnityEditor.Rendering.HighDefinition.ShaderGraph
             { Descriptors.AlphaTest, new FieldCondition(Fields.AlphaTest, true) },
         };
 
-        public static KeywordCollection HDDepthMotionVectors = new KeywordCollection
+        public static KeywordCollection HDDepthForwardOnly = new KeywordCollection
+        {
+            { HDBase },
+            { Descriptors.WriteMsaaDepth },
+            { Descriptors.AlphaToMask, new FieldCondition(Fields.AlphaToMask, true) },
+        };
+
+        public static KeywordCollection HDMotionVectors = new KeywordCollection
         {
             { HDBase },
             { Descriptors.WriteMsaaDepth },
@@ -364,7 +380,15 @@ namespace UnityEditor.Rendering.HighDefinition.ShaderGraph
             { Descriptors.Decals },
         };
 
-        public static KeywordCollection HDLitDepthMotionVectors = new KeywordCollection
+        public static KeywordCollection HDLitDepthOnly = new KeywordCollection
+        {
+            { HDBase },
+            { Descriptors.WriteMsaaDepth },
+            { Descriptors.WriteNormalBuffer },
+            { Descriptors.AlphaToMask, new FieldCondition(Fields.AlphaToMask, true) },
+        };
+
+        public static KeywordCollection HDLitMotionVectors = new KeywordCollection
         {
             { HDBase },
             { Descriptors.WriteMsaaDepth },
@@ -382,7 +406,14 @@ namespace UnityEditor.Rendering.HighDefinition.ShaderGraph
             { Descriptors.LightList, new FieldCondition(Fields.SurfaceOpaque, true) },
         };
 
-        public static KeywordCollection HDDepthMotionVectorsNoNormal = new KeywordCollection
+        public static KeywordCollection HDDepthNoNormal = new KeywordCollection
+        {
+            { HDBase },
+            { Descriptors.WriteMsaaDepth },
+            { Descriptors.AlphaToMask, new FieldCondition(Fields.AlphaToMask, true) },
+        };
+
+        public static KeywordCollection HDMotionVectorsNoNormal = new KeywordCollection
         {
             { HDBase },
             { Descriptors.WriteMsaaDepth },

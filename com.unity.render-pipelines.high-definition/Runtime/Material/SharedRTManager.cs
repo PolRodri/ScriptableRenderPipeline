@@ -126,8 +126,8 @@ namespace UnityEngine.Rendering.HighDefinition
             if (frameSettings.IsEnabled(FrameSettingsField.MSAA))
             {
                 Debug.Assert(m_MSAASupported);
-                m_RTIDs2[0] = m_NormalMSAART.nameID;
-                m_RTIDs2[1] = m_DepthAsColorMSAART.nameID;
+                m_RTIDs2[0] = m_DepthAsColorMSAART.nameID;
+                m_RTIDs2[1] = m_NormalMSAART.nameID;
                 return m_RTIDs2;
             }
             else
