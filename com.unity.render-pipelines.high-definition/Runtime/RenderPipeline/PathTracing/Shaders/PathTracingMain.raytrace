@@ -69,9 +69,13 @@ void MissLight(inout PathIntersection pathIntersection : SV_RayPayload)
 [shader("miss")]
 void MissMaterial(inout PathIntersection pathIntersection : SV_RayPayload)
 {
-    pathIntersection.value = _EnvLightSkyEnabled && (_RaytracingMaxRecursion - pathIntersection.remainingDepth) >= _RaytracingMinRecursion ?
-        SampleSkyTexture(WorldRayDirection(), 0.0, 0).xyz : 0.0;
+    if ((_RaytracingMaxRecursion - pathIntersection.remainingDepth) < _RaytracingMinRecursion)
+    {
+        pathIntersection.value = 0.0;
+        return;
+    }
 
+    pathIntersection.value = _EnvLightSkyEnabled ? SampleSkyTexture(WorldRayDirection(), 0.0, 0).xyz : 0.0;
     ApplyFogAttenuation(WorldRayOrigin(), WorldRayDirection(), pathIntersection.value);
 }
 
