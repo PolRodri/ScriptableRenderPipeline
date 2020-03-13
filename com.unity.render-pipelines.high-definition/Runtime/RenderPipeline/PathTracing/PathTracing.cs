@@ -195,7 +195,7 @@ namespace UnityEngine.Rendering.HighDefinition
                                         name: string.Format("PathTracingHistoryBuffer{0}", frameIndex));
         }
 
-        void RenderPathTracing(HDCamera hdCamera, CommandBuffer cmd, RTHandle outputTexture, ScriptableRenderContext renderContext, int frameCount)
+        void RenderPathTracing(HDCamera hdCamera, CommandBuffer cmd, RTHandle outputTexture)
         {
             RayTracingShader pathTracingShader = m_Asset.renderPipelineRayTracingResources.pathTracing;
             m_PathTracingSettings = hdCamera.volumeStack.GetComponent<PathTracing>();
@@ -244,7 +244,7 @@ namespace UnityEngine.Rendering.HighDefinition
 
             // Set the data for the ray generation
             cmd.SetRayTracingTextureParam(pathTracingShader, HDShaderIDs._CameraColorTextureRW, outputTexture);
-            cmd.SetGlobalInt(HDShaderIDs._RaytracingFrameIndex, (int)m_CurrentIteration);
+            cmd.SetGlobalInt(HDShaderIDs._RaytracingSampleIndex, (int)m_CurrentIteration);
 
             // Compute an approximate pixel spread angle value (in radians)
             cmd.SetRayTracingFloatParam(pathTracingShader, HDShaderIDs._RaytracingPixelSpreadAngle, GetPixelSpreadAngle(hdCamera.camera.fieldOfView, hdCamera.actualWidth, hdCamera.actualHeight));

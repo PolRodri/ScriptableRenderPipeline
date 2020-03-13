@@ -93,9 +93,9 @@ void ClosestHit(inout PathIntersection pathIntersection : SV_RayPayload, Attribu
 
     // Generate the new sample (following values of the sequence)
     float3 inputSample = 0.0;
-    inputSample.x = GetSample(pathIntersection.pixelCoord, _RaytracingFrameIndex, 4 * currentDepth);
-    inputSample.y = GetSample(pathIntersection.pixelCoord, _RaytracingFrameIndex, 4 * currentDepth + 1);
-    inputSample.z = GetSample(pathIntersection.pixelCoord, _RaytracingFrameIndex, 4 * currentDepth + 2);
+    inputSample.x = GetSample(pathIntersection.pixelCoord, _RaytracingSampleIndex, 4 * currentDepth);
+    inputSample.y = GetSample(pathIntersection.pixelCoord, _RaytracingSampleIndex, 4 * currentDepth + 1);
+    inputSample.z = GetSample(pathIntersection.pixelCoord, _RaytracingSampleIndex, 4 * currentDepth + 2);
 
     // Get current path throughput
     float3 pathThroughput = pathIntersection.value;
@@ -158,7 +158,7 @@ void ClosestHit(inout PathIntersection pathIntersection : SV_RayPayload, Attribu
             // Apply Russian roulette to our path
             const float rrThreshold = 0.2 + 0.1 * _RaytracingMaxRecursion;
             float rrFactor, rrValue = Luminance(pathThroughput);
-            float rrSample = GetSample(pathIntersection.pixelCoord, _RaytracingFrameIndex, 4 * currentDepth + 3);
+            float rrSample = GetSample(pathIntersection.pixelCoord, _RaytracingSampleIndex, 4 * currentDepth + 3);
 
             if (RussianRouletteTest(rrThreshold, rrValue, rrSample, rrFactor, !currentDepth))
             {
