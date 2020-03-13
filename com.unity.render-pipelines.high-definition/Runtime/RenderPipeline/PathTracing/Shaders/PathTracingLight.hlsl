@@ -29,6 +29,12 @@ bool IsRectAreaLightActive(LightData lightData, float3 position, float3 normal)
 {
     float3 lightVec = position - GetAbsolutePositionWS(lightData.positionRWS);
 
+#ifndef USE_LIGHT_CLUSTER
+    // Check light range first
+    if (Length2(lightVec) > Sq(lightData.range))
+        return false;
+#endif
+
     // Check that the shading position is in front of the light
     float lightCos = dot(lightVec, lightData.forward);
     if (lightCos < 0.0)
@@ -45,6 +51,12 @@ bool IsRectAreaLightActive(LightData lightData, float3 position, float3 normal)
 bool IsPointLightActive(LightData lightData, float3 position, float3 normal)
 {
     float3 lightVec = position - GetAbsolutePositionWS(lightData.positionRWS);
+
+#ifndef USE_LIGHT_CLUSTER
+    // Check light range first
+    if (Length2(lightVec) > Sq(lightData.range))
+        return false;
+#endif
 
     // Check that at least part of the light is above the tangent plane
     float lightTangentDist = dot(normal, lightVec);
@@ -73,9 +85,17 @@ LightList CreateLightList(float3 position, float3 normal, uint lightLayers)
     uint i, localPointCount, localCount;
 
 #ifdef USE_LIGHT_CLUSTER
-    list.cellIndex = GetClusterCellIndex(position);
-    localPointCount = GetPunctualLightClusterCellCount(list.cellIndex);
-    localCount = GetAreaLightClusterCellCount(list.cellIndex);
+    if (PointInsideCluster(position))
+    {
+        list.cellIndex = GetClusterCellIndex(position);
+        localPointCount = GetPunctualLightClusterCellCount(list.cellIndex);
+        localCount = GetAreaLightClusterCellCount(list.cellIndex);
+    }
+    else
+    {
+        localPointCount = 0;
+        localCount = 0;
+    }
 #else
     localPointCount = _PunctualLightCountRT;
     localCount = _PunctualLightCountRT + _AreaLightCountRT;
