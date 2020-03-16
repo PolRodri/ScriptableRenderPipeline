@@ -41,6 +41,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Fixed the cookie atlas size and planar atlas size being too big after an upgrade of the HDRP asset.
 - Fixed alpha clipping test (comparison was '>', now '>=')
 - Fixed preview camera (eg. shader graph preview) when path tracing is on
+- Fixed DXR player build
+- Fixed compilation issue with linux vulkan and raytrace shader
+- Fixed the HDRP asset migration code not being called after an upgrade of the package
+- Fixed draw renderers custom pass out of bound exception
+- Fixed an issue with emissive light meshes not being in the RAS.
+- Fixed a warning due to StaticLightingSky when reloading domain in some cases.
 
 ### Changed
 - Renamed the cubemap used for diffuse convolution to a more explicit name for the memory profiler.
