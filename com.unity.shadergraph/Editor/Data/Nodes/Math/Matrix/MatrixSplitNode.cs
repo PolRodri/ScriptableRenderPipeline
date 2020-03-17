@@ -205,7 +205,7 @@ namespace UnityEditor.ShaderGraph
                 bool inputError = tempSlots.Any(x => x.hasError);
                 if (inputError)
                 {
-                    owner.AddConcretizationError(tempId, string.Format("Node {0} had input error", tempId));
+                    owner.AddConcretizationError(guid, string.Format("Node {0} had input error", guid));
                     hasError = true;
                 }
                 // configure the output slots now
@@ -241,7 +241,7 @@ namespace UnityEditor.ShaderGraph
                 GetOutputSlots(tempSlots);
                 if(tempSlots.Any(x => x.hasError))
                 {
-                    owner.AddConcretizationError(tempId, string.Format("Node {0} had output error", tempId));
+                    owner.AddConcretizationError(guid, string.Format("Node {0} had output error", guid));
                     hasError = true;
                 }
             }

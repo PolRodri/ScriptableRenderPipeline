@@ -202,7 +202,7 @@ namespace UnityEditor.ShaderGraph
         {
             if (!keywordGuid.Equals(Guid.Empty) && !owner.keywords.Any(x => x.guid == keywordGuid))
             {
-                owner.AddConcretizationError(tempId, "Keyword Node has no associated keyword.");
+                owner.AddConcretizationError(guid, "Keyword Node has no associated keyword.");
                 hasError = true;
             }
         }

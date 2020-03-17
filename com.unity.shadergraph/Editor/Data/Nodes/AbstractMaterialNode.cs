@@ -377,7 +377,7 @@ namespace UnityEditor.ShaderGraph
                     var outputNode = owner.GetNodeFromGuid(outputSlotRef.nodeGuid);
                     if (outputNode == null)
                     {
-                        owner.AddConcretizationError(tempId, string.Format("Failed to find Node with Guid {0}", outputSlotRef.nodeGuid));
+                        owner.AddConcretizationError(guid, string.Format("Failed to find Node with Guid {0}", outputSlotRef.nodeGuid));
                         hasError = true;
                         continue;
                     }
@@ -472,7 +472,7 @@ namespace UnityEditor.ShaderGraph
                 bool inputError = tempSlots.Any(x => x.hasError);
                 if(inputError)
                 {
-                    owner.AddConcretizationError(tempId, string.Format("Node {0} had input error", tempId));
+                    owner.AddConcretizationError(guid, string.Format("Node {0} had input error", guid));
                     hasError = true;
                 }
 
@@ -509,7 +509,7 @@ namespace UnityEditor.ShaderGraph
                 GetOutputSlots(tempSlots);
                 if(tempSlots.Any(x => x.hasError))
                 {
-                    owner.AddConcretizationError(tempId, string.Format("Node {0} had output error", tempId));
+                    owner.AddConcretizationError(guid, string.Format("Node {0} had output error", guid));
                     hasError = true;
                 }
                 CalculateNodeHasError();
@@ -553,7 +553,7 @@ namespace UnityEditor.ShaderGraph
                     var outputSlot = outputNode.GetOutputSlots<MaterialSlot>().First(s => s.id == edge.outputSlot.slotId);
                     if (!slot.IsCompatibleWith(outputSlot))
                     {
-                        owner.AddConcretizationError(tempId, $"Slot {slot.RawDisplayName()} cannot accept input of type {outputSlot.concreteValueType}.");
+                        owner.AddConcretizationError(guid, $"Slot {slot.RawDisplayName()} cannot accept input of type {outputSlot.concreteValueType}.");
                         hasError = true;
                         return;
                     }

@@ -10,8 +10,8 @@ namespace UnityEditor.ShaderGraph
         {
             public static void ApplyActionLeafFirst(GraphData graph, Action<AbstractMaterialNode> action)
             {
-                var temporaryMarks = IndexSetPool.Get();
-                var permanentMarks = IndexSetPool.Get();
+                var temporaryMarks = PooledHashSet<Guid>.Get();
+                var permanentMarks = PooledHashSet<Guid>.Get();
                 var slots = ListPool<MaterialSlot>.Get();
 
                 // Make sure we process a node's children before the node itself.
@@ -23,19 +23,19 @@ namespace UnityEditor.ShaderGraph
                 while (stack.Count > 0)
                 {
                     var node = stack.Pop();
-                    if (permanentMarks.Contains(node.tempId.index))
+                    if (permanentMarks.Contains(node.guid))
                     {
                         continue;
                     }
 
-                    if (temporaryMarks.Contains(node.tempId.index))
+                    if (temporaryMarks.Contains(node.guid))
                     {
                         action.Invoke(node);
-                        permanentMarks.Add(node.tempId.index);
+                        permanentMarks.Add(node.guid);
                     }
                     else
                     {
-                        temporaryMarks.Add(node.tempId.index);
+                        temporaryMarks.Add(node.guid);
                         stack.Push(node);
                         node.GetInputSlots(slots);
                         foreach (var inputSlot in slots)
@@ -57,8 +57,8 @@ namespace UnityEditor.ShaderGraph
 
                 StackPool<AbstractMaterialNode>.Release(stack);
                 ListPool<MaterialSlot>.Release(slots);
-                IndexSetPool.Release(temporaryMarks);
-                IndexSetPool.Release(permanentMarks);
+                temporaryMarks.Dispose();
+                permanentMarks.Dispose();
             }
         }
     }

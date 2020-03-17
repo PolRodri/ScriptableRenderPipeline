@@ -983,13 +983,13 @@ namespace UnityEditor.ShaderGraph
             messageManager?.AddOrAppendError(this, id, new ShaderMessage("Validation: " + errorMessage, severity));
         }
 
-        public void AddSetupError(Identifier id, string errorMessage,
+        public void AddSetupError(Guid id, string errorMessage,
             ShaderCompilerMessageSeverity severity = ShaderCompilerMessageSeverity.Error)
         {
             messageManager?.AddOrAppendError(this, id, new ShaderMessage("Setup: " + errorMessage, severity));
         }
 
-        public void AddConcretizationError(Identifier id, string errorMessage,
+        public void AddConcretizationError(Guid id, string errorMessage,
             ShaderCompilerMessageSeverity severity = ShaderCompilerMessageSeverity.Error)
         {
             messageManager?.AddOrAppendError(this, id, new ShaderMessage("Concretization: " + errorMessage, severity));

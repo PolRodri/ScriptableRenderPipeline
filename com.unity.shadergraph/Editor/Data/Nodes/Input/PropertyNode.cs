@@ -182,7 +182,7 @@ namespace UnityEditor.ShaderGraph
         {
             if (!propertyGuid.Equals(Guid.Empty) && !owner.properties.Any(x => x.guid == propertyGuid))
             {
-                owner.AddConcretizationError(tempId, "Property Node has no associated Blackboard property.");
+                owner.AddConcretizationError(guid, "Property Node has no associated Blackboard property.");
             }
         }
 
@@ -192,7 +192,7 @@ namespace UnityEditor.ShaderGraph
             var property = owner.properties.FirstOrDefault(x => x.guid == propertyGuid);
             if (property == null)
             {
-                owner.AddConcretizationError(tempId, string.Format("No matching poperty found on owner for node {0}", tempId));
+                owner.AddConcretizationError(guid, string.Format("No matching poperty found on owner for node {0}", guid));
                 hasError = true;
                 return;
             }
