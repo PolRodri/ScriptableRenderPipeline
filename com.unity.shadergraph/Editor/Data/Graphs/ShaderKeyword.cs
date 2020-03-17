@@ -44,7 +44,7 @@ namespace UnityEditor.ShaderGraph
 
             return new ShaderKeyword()
             {
-                m_IsBuiltIn = true,
+                isBuiltIn = true,
                 displayName = descriptor.displayName,
                 overrideReferenceName = descriptor.referenceName,
                 keywordType = descriptor.type,
@@ -100,16 +100,16 @@ namespace UnityEditor.ShaderGraph
             set => m_Value = value;
         }
 
-        [FormerlySerializedAs("m_IsEditable")] [SerializeField]
-        private bool m_IsBuiltIn = false;
+        [SerializeField]
+        private bool m_IsEditable = true; // Only Built-In Keywords are uneditable
 
         public bool isBuiltIn
         {
-            get => m_IsBuiltIn;
-            set => m_IsBuiltIn = value;
+            get => !m_IsEditable;
+            set => m_IsEditable = !value;
         }
 
-        internal override bool isExposable => !m_IsBuiltIn
+        internal override bool isExposable => !isBuiltIn
             && (keywordType == KeywordType.Enum || referenceName.EndsWith("_ON"));
 
         internal override bool isRenamable => !isBuiltIn;
